@@ -23,21 +23,7 @@ struct ContentView: View {
     var body: some View {
         switch globalViewState.screen {
         case .mainScreen:
-            VStack {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundColor(.accentColor)
-                    .padding(20)
-                Text("Hello, world!")
-                Button("Second Screen") {
-                    globalViewState.screen = .secondScreen
-                }
-                Button("Third Screen") {
-                    globalViewState.screen = .thirdScreen
-                }
-            }
-            .padding(100)
-            .background(Color(red: 1, green: 0.7, blue: 0.2))
+            MainScreen()
         case .secondScreen:
             SecondScreen()
         case .thirdScreen:
@@ -46,6 +32,50 @@ struct ContentView: View {
         
     }
     
+}
+
+struct MainScreen : View {
+    @ObservedObject var globalViewState = GlobalViewState.shared
+
+    var body: some View {
+        VStack {
+            ScrollView(.horizontal) {
+                HStack {
+                    Button("Control 1") {
+                        print("Tapped button 1")
+                    }
+                    Button("Control 2") {
+                        print("Tapped button 2")
+                    }
+                    Button("Control 1") {
+                        print("Tapped button 1")
+                    }
+                    Button("Control 2") {
+                        print("Tapped button 2")
+                    }
+                    Button("Control 1") {
+                        print("Tapped button 1")
+                    }
+                    Button("Control 2") {
+                        print("Tapped button 2")
+                    }
+                }
+            }
+            Image(systemName: "globe")
+                .imageScale(.large)
+                .foregroundColor(.accentColor)
+                .padding(20)
+            Text("Hello, world!")
+            Button("Second Screen") {
+                globalViewState.screen = .secondScreen
+            }
+            Button("Third Screen") {
+                globalViewState.screen = .thirdScreen
+            }
+        }
+        .padding(100)
+        .background(Color(red: 1, green: 0.7, blue: 0.2))
+    }
 }
 
 struct SecondScreen: View {
